@@ -1,0 +1,194 @@
+/* ===============================
+   Global Reset & Theme
+================================ */
+:root {
+    --bg-main: #05050a;
+    --bg-card: #0d0d1f;
+    --purple: #8b5cf6;
+    --purple-glow: #a78bfa;
+    --text-main: #e5e7ff;
+    --text-muted: #b4b8ff;
+    --border-soft: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #0b0b22, var(--bg-main));
+    color: var(--text-main);
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+/* ===============================
+   Floating Background Glow
+================================ */
+body::before {
+    content: "";
+    position: fixed;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, var(--purple-glow), transparent 70%);
+    filter: blur(90px);
+    opacity: 0.25;
+    z-index: -1;
+    animation: float 16s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0) translateX(0);
+    }
+    to {
+        transform: translateY(60px) translateX(-60px);
+    }
+}
+
+/* ===============================
+   Headings
+================================ */
+h1 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #c4b5fd, var(--purple));
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+/* ===============================
+   Paragraphs
+================================ */
+p {
+    background: var(--bg-card);
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-soft);
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+p:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.25);
+}
+
+/* ===============================
+   Links
+================================ */
+a {
+    display: inline-block;
+    margin: 0.4rem 0;
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: var(--purple);
+    transition: width 0.3s ease;
+}
+
+a:hover {
+    color: #d8b4fe;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* ===============================
+   Images
+================================ */
+img {
+    margin: 0.8rem 0;
+    border-radius: 14px;
+    border: 1px solid var(--border-soft);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.35);
+}
+
+/* ===============================
+   Text Formatting
+================================ */
+b {
+    color: #ffffff;
+}
+
+i {
+    color: #c4b5fd;
+}
+
+u {
+    text-decoration-color: var(--purple);
+}
+
+big {
+    font-size: 1.4rem;
+    color: #ddd6fe;
+}
+
+small {
+    color: #9ca3ff;
+}
+
+/* ===============================
+   Preformatted Text
+================================ */
+pre {
+    background: #020215;
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.2rem;
+    color: #e9d5ff;
+    overflow-x: auto;
+    font-family: "Fira Code", monospace;
+    box-shadow: inset 0 0 25px rgba(139, 92, 246, 0.15);
+}
+
+/* ===============================
+   Horizontal Rule
+================================ */
+hr {
+    border: none;
+    height: 1px;
+    margin: 2rem 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--purple),
+        transparent
+    );
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 600px) {
+    body {
+        padding: 1.4rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
