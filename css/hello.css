@@ -1,0 +1,210 @@
+/* ===============================
+   Global Reset & Variables
+================================ */
+:root {
+    --bg-main: #05050a;
+    --bg-secondary: #0b0b18;
+    --purple-dark: #4b2c7a;
+    --purple-glow: #9b6cff;
+    --text-main: #eae6ff;
+    --text-muted: #a39bc7;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #0c0b1f, var(--bg-main));
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===============================
+   Animated Background Shapes
+================================ */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--purple-glow), transparent 70%);
+    filter: blur(80px);
+    opacity: 0.25;
+    z-index: -1;
+    animation: float 18s infinite alternate ease-in-out;
+}
+
+body::before {
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    bottom: -120px;
+    right: -120px;
+    animation-duration: 22s;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0) translateX(0);
+    }
+    to {
+        transform: translateY(-60px) translateX(40px);
+    }
+}
+
+/* ===============================
+   Header
+================================ */
+header {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    background: linear-gradient(
+        180deg,
+        rgba(155, 108, 255, 0.15),
+        transparent
+    );
+    border-bottom: 1px solid var(--glass-border);
+}
+
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #c3a6ff, #7a4cff);
+    
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(155, 108, 255, 0.3);
+}
+
+/* ===============================
+   Main Layout
+================================ */
+main {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* ===============================
+   Sections & Article (Glass Cards)
+================================ */
+section,
+article,
+aside,
+div {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 1.4rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+section:hover,
+article:hover,
+aside:hover,
+div:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 15px 40px rgba(155, 108, 255, 0.25);
+}
+
+/* ===============================
+   Text Styling
+================================ */
+section {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+article {
+    grid-column: span 2;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+aside {
+    font-size: 0.95rem;
+    color: #ff8fd8;
+    border: 1px dashed rgba(255, 143, 216, 0.4);
+}
+
+/* ===============================
+   Div Content Styling
+================================ */
+div p {
+    margin-bottom: 0.6rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid var(--purple-dark);
+}
+
+/* ===============================
+   Highlighted Name (Span)
+================================ */
+span {
+    grid-column: span 2;
+    margin-top: 1.5rem;
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #fff;
+    text-shadow:
+        0 0 10px rgba(155, 108, 255, 0.6),
+        0 0 25px rgba(155, 108, 255, 0.4);
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 8px rgba(155, 108, 255, 0.4);
+    }
+    to {
+        text-shadow:
+            0 0 18px rgba(155, 108, 255, 0.9),
+            0 0 35px rgba(155, 108, 255, 0.6);
+    }
+}
+
+/* ===============================
+   Footer
+================================ */
+footer {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--glass-border);
+}
+
+/* ===============================
+   Responsive Design
+================================ */
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    article,
+    span {
+        grid-column: span 1;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+}
